@@ -2822,23 +2822,3 @@ ClearChannel:
 	ld a, $80
 	ld [hli], a ; rAUD1HIGH,  rAUD2HIGH, rAUD3HIGH,  rAUD4GO   ; restart sound (freq hi = 0)
 	ret
-
-PlayTrainerEncounterMusic::
-; input: e = trainer type
-	; turn fade off
-	xor a
-	ld [wMusicFade], a
-	; play nothing for one frame
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	; play new song
-	call MaxVolume
-	pop de
-	ld d, $00
-	ld hl, TrainerEncounterMusic
-	add hl, de
-	ld e, [hl]
-	call PlayMusic
-	ret
