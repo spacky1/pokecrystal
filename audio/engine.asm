@@ -6,6 +6,9 @@
 ; 	FadeMusic
 ; 	PlayStereoSFX
 
+; gbs: set when a channel hits sound_loop 0
+DEF SOUND_LOOP_COMPLETE EQU 7
+
 _InitSound::
 ; restart sound operation
 ; clear all relevant hardware registers & wram
@@ -198,6 +201,45 @@ _UpdateSound::
 	ld [wCurChannel], a
 	cp NUM_CHANNELS ; are we done?
 	jp nz, .loop ; do it all again
+
+; gbs: check if all active music channels have completed a loop
+	ld bc, wChannel1
+	ld d, NUM_MUSIC_CHANS
+.loop_check
+	ld hl, CHANNEL_FLAGS1
+	add hl, bc
+	bit SOUND_CHANNEL_ON, [hl]
+	jr z, .next_channel
+	bit SOUND_LOOP_COMPLETE, [hl]
+	jr nz, .next_channel
+; active channel that hasn't looped yet
+	jr .not_done
+.next_channel
+	ld hl, CHANNEL_STRUCT_LENGTH
+	add hl, bc
+	ld c, l
+	ld b, h
+	dec d
+	jr nz, .loop_check
+; all active music channels have hit sound_loop 0
+; write loop marker for IO callback
+	ld a, $AC
+	ldh [$FF03], a
+; clear SOUND_LOOP_COMPLETE on all music channels
+; so marker only fires once per loop iteration
+	ld bc, wChannel1
+	ld d, NUM_MUSIC_CHANS
+.clear_loops
+	ld hl, CHANNEL_FLAGS1
+	add hl, bc
+	res SOUND_LOOP_COMPLETE, [hl]
+	ld hl, CHANNEL_STRUCT_LENGTH
+	add hl, bc
+	ld c, l
+	ld b, h
+	dec d
+	jr nz, .clear_loops
+.not_done
 
 	call PlayDanger
 	; fade music in/out
@@ -1517,8 +1559,13 @@ Music_Loop:
 	bit SOUND_LOOPING, [hl] ; has the loop been initiated?
 	jr nz, .checkloop
 	and a ; loop counter 0 = infinite
-	jr z, .loop
-	; initiate loop
+	jr nz, .initiate_loop
+; gbs: infinite loop, mark channel as looped
+	ld hl, CHANNEL_FLAGS1
+	add hl, bc
+	set SOUND_LOOP_COMPLETE, [hl]
+	jr .loop
+.initiate_loop
 	dec a
 	set SOUND_LOOPING, [hl] ; set loop flag
 	ld hl, CHANNEL_LOOP_COUNT
