@@ -12,6 +12,12 @@ Music_LookPokemaniac_Ch1:
 	pitch_offset 2
 	note_type 12, 11, 3
 	rest 8
+	rest 4
+	octave 3
+	note A#, 1
+	rest 3
+	note A#, 1
+	rest 3
 .mainloop:
 .loop1:
 	rest 4
@@ -20,13 +26,12 @@ Music_LookPokemaniac_Ch1:
 	rest 3
 	note A#, 1
 	rest 3
-	sound_loop 4, .loop1
+	sound_loop 3, .loop1
 	rest 4
 	note G_, 1
 	rest 3
 	note G_, 1
 	rest 3
-	sound_loop 4, .loop1
 	sound_loop 0, .mainloop
 
 Music_LookPokemaniac_Ch2:
