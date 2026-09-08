@@ -64,4 +64,22 @@ _init::
     ENDC
 
 _play::
-    jp _UpdateSound
+    call _UpdateSound
+    ld hl, wChannel1 + CHANNEL_FLAGS1
+    ld de, CHANNEL_STRUCT_LENGTH
+    ld b, NUM_CHANNELS
+.check_channels
+    bit SOUND_CHANNEL_ON, [hl]
+    jr nz, .keep_playing
+    add hl, de
+    dec b
+    jr nz, .check_channels
+; all channels are off
+; write magic value to stop gbsplay
+    ld a, $AB
+    ldh [$FF03], a
+; stops subsequent _UpdateSound
+    xor a
+    ld [wMusicPlaying], a
+.keep_playing
+    ret
