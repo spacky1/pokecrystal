@@ -71,7 +71,7 @@ Music_TrainerVictory_Ch1:
 	note E_, 2
 	note F#, 2
 	note G_, 2
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	octave 3
@@ -125,7 +125,7 @@ Music_TrainerVictory_Ch2:
 	note_type 12, 8, 8
 	note F#, 16
 	note E_, 16
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	octave 4
@@ -210,7 +210,7 @@ Music_TrainerVictory_Ch3:
 	note G_, 2
 	note E_, 2
 	note C#, 2
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	octave 2

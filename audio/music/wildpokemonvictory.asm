@@ -36,11 +36,7 @@ Music_WildPokemonVictory_Ch1:
 	note F#, 4
 	sound_call .sub1
 	note G#, 4
-	transpose 0, 0
-	volume_envelope 7, 8
-	octave 3
-	note F#, 4
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	volume_envelope 7, 1
@@ -104,15 +100,7 @@ Music_WildPokemonVictory_Ch2:
 	sound_call .sub1
 	octave 4
 	note B_, 4
-	transpose 0, 0
-	volume_envelope 8, 1
-	octave 3
-	note B_, 1
-	octave 4
-	note D#, 1
-	note F#, 1
-	note A_, 1
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	volume_envelope 8, 1
@@ -162,10 +150,7 @@ Music_WildPokemonVictory_Ch3:
 	sound_call .sub1
 	note E_, 2
 	rest 2
-	transpose 0, 0
-	octave 2
-	note B_, 4
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	volume_envelope 2, 5

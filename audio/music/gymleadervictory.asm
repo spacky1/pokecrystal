@@ -59,7 +59,7 @@ Music_GymLeaderVictory_Ch1:
 	note G_, 2
 	volume_envelope 8, 7
 	note F#, 16
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 	volume_envelope 9, 1
@@ -166,13 +166,8 @@ Music_GymLeaderVictory_Ch2:
 	note E_, 2
 	volume_envelope 10, 6
 	note D_, 12
-	rest 2
-	duty_cycle 3
-	octave 4
-	note B_, 1
-	octave 5
-	note C#, 1
-	sound_loop 0, .mainloop
+	rest 4
+	sound_ret
 
 .sub1:
 	octave 5
@@ -301,13 +296,8 @@ Music_GymLeaderVictory_Ch3:
 	rest 2
 	note D_, 2
 	note A_, 2
-	rest 2
-	octave 2
-	note A_, 2
-	note B_, 2
-	octave 3
-	note C#, 2
-	sound_loop 0, .mainloop
+	rest 6
+	sound_ret
 
 .sub1:
 	octave 3
@@ -410,7 +400,7 @@ Music_GymLeaderVictory_Ch4:
 	drum_note 3, 2
 	drum_note 8, 2
 	sound_loop 16, .loop1
-	sound_loop 0, .mainloop
+	sound_ret
 
 .sub1:
 .sub1loop1:
