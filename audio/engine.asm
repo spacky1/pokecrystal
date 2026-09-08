@@ -205,11 +205,13 @@ _UpdateSound::
 ; gbs: check if all active music channels have completed a loop
 	ld bc, wChannel1
 	ld d, NUM_MUSIC_CHANS
+	ld e, 0 ; active channel counter
 .loop_check
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .next_channel
+	inc e ; count active channel
 	bit SOUND_LOOP_COMPLETE, [hl]
 	jr nz, .next_channel
 ; active channel that hasn't looped yet
@@ -221,6 +223,10 @@ _UpdateSound::
 	ld b, h
 	dec d
 	jr nz, .loop_check
+; skip marker if no channels are active
+	ld a, e
+	and a
+	jr z, .not_done
 ; all active music channels have hit sound_loop 0
 ; write loop marker for IO callback
 	ld a, $AC
