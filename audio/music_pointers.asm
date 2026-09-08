@@ -109,4 +109,5 @@ Music:
 	dba Music_MobileCenter
 ; extra
 	dba Music_WildPokemonVictoryShort
+	dba Music_GoldSilverTitleScreen
 	assert_table_length NUM_MUSIC_SONGS

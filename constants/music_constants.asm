@@ -107,6 +107,7 @@
 	const MUSIC_MOBILE_CENTER                ; 66
 ; extra
 	const MUSIC_WILD_VICTORY_SHORT           ; 67
+	const MUSIC_GS_TITLE                     ; 68
 DEF NUM_MUSIC_SONGS EQU const_value
 
 ; GetMapMusic picks music for this value (see home/map.asm)

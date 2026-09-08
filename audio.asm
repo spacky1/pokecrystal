@@ -149,6 +149,7 @@ SECTION "Extra Songs 2", ROMX
 
 INCLUDE "audio/music/postcredits.asm"
 INCLUDE "audio/music/wildpokemonvictoryshort.asm"
+INCLUDE "audio/music/goldsilvertitlescreen.asm"
 
 
 SECTION "Sound Effects", ROMX
