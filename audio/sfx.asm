@@ -4278,6 +4278,7 @@ Sfx_Call_Ch5:
 	square_note 4, 15, 7, 1952
 	pitch_sweep 0, 8
 	square_note 4, 0, 0, 0
+	sound_loop 2, Sfx_Call_Ch5
 	sound_ret
 
 Sfx_Peck_Ch8:
