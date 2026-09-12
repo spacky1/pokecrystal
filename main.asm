@@ -7,7 +7,7 @@ SECTION "Header", ROM0
     	db NUM_MUSIC_SONGS - 1
     ENDC
     IF DEF(_SFX)
-    	db NUM_SFX - 1
+    	db NUM_SFX
     ENDC
     IF DEF(_CRY)
     	db NUM_POKEMON
